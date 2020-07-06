@@ -1,0 +1,16 @@
+<%= image_tag @pet.image, height: '400', width: 'auto', alt: 'Image' %>
+<h2>Name: <%= @pet.name %></h2>
+<p>
+  Description: <%= @pet.description %>
+  <br>
+  Approximate Age: <%= "#{@pet.age}" %>
+  <br>
+  Sex: <%= @pet.sex %>
+  <br>
+  Adoption Status: <%= @pet.status %>
+</p>
+<br>
+<%= button_to "Edit #{@pet.name} Info", "/pets/#{@pet.id}/edit", method: :get %>
+<br>
+<%= button_to "Delete #{@pet.name}", "/pets/#{@pet.id}", method: :delete %>
+<br>
