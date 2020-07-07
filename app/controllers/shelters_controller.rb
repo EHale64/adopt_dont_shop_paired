@@ -36,6 +36,11 @@ class SheltersController < ApplicationController
     @shelter = Shelter.find(params[:id])
   end
 
+  def reviews
+    binding.pry
+    @shelter = Shelter.find(params[:id])
+  end
+
   private
 
   def shelter_params
