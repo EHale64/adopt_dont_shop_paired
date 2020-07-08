@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.create(review_params)
+    @review = Review.new(review_params)
     if @review.save
       redirect_to "/shelters/#{params[:shelter_id]}"
     else
@@ -14,14 +14,19 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.find(params[:review_id])
+    @review = Review.find(params[:id])
   end
 
   def update
-    require "pry"; binding.pry
+    #require "pry"; binding.pry
     review = Review.find(params[:id])
     review.update(review_params)
-    redirect_to "/shelters/#{params[:shelter_id]}"
+    if review.save(review_params)
+      redirect_to "/shelters/#{review.shelter_id}"
+    else
+      flash[:error] = "You must fill out Title, Rating, and Content to submit a review."
+      redirect_to "/reviews/#{review.id}/edit"
+    end
   end
 
   private

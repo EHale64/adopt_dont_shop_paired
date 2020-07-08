@@ -13,7 +13,7 @@
     <%= "#{review.rating}/5" %>
     <%= review.content %>
     <%= review.picture %>
-    <%= button_to 'Edit review', "/shelters/#{@shelter.id}/reviews/#{review.id}/edit", method: :get %>
+    <%= button_to 'Edit review', "/reviews/#{review.id}/edit", method: :get %>
 <% end %></p>
 
 <%= button_to 'Add review', "/shelters/#{@shelter.id}/reviews/new", method: :get %>
