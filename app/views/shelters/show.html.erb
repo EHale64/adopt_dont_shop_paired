@@ -14,6 +14,7 @@
     <%= review.content %>
     <%= review.picture %>
     <%= button_to 'Edit review', "/reviews/#{review.id}/edit", method: :get %>
+    <%= button_to 'Delete review', "/reviews/#{review.id}", method: :delete, :class => "btn" %>
 <% end %></p>
 
 <%= button_to 'Add review', "/shelters/#{@shelter.id}/reviews/new", method: :get %>
