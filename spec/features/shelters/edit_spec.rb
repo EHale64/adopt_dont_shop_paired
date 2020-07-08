@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Shelters index page' do
-  xit 'allows the user to follow the link to update the shelter info' do
+  it 'allows the user to follow the link to update the shelter info' do
     shelter_1 = Shelter.create(name: 'Pets, Pets, Pets', address: '123 Easy St', city: 'Denver', state: 'CO', zip: '80204')
 
     visit '/shelters'

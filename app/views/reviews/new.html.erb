@@ -13,3 +13,9 @@
   <br>
   <%= submit_tag 'Submit review' %>
 <% end %>
+
+<% flash.each do |type, msg|  %>
+    <div>
+      <%= msg %>
+    </div>
+<% end %>
