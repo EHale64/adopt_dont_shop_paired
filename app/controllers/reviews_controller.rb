@@ -18,7 +18,6 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    #require "pry"; binding.pry
     review = Review.find(params[:id])
     review.update(review_params)
     if review.save(review_params)
@@ -36,6 +35,7 @@ class ReviewsController < ApplicationController
   end
 
   private
+
   def review_params
     params.permit(:title, :content, :rating, :picture, :shelter_id)
   end

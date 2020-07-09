@@ -3,7 +3,7 @@ class Shelter < ApplicationRecord
   has_many :pets
   has_many :reviews
 
-  def total
+  def total_pets
     pets.count
   end
 end

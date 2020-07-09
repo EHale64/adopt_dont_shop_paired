@@ -1,7 +1,7 @@
 <h1>All Pets</h1>
 <hr>
 <% @pets.each do |pet| %>
-<br>
+  <br>
   <%= image_tag pet.image, height: '200', width: 'auto', alt: 'Image' %>
   <h3><%= link_to pet.name, "/pets/#{pet.id}" %></h3>
   <p>

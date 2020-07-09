@@ -28,16 +28,12 @@ class SheltersController < ApplicationController
   def destroy
     shelter = Shelter.find(params[:id])
     shelter.pets.destroy_all
+    shelter.reviews.destroy_all
     shelter.destroy
     redirect_to '/shelters'
   end
 
   def pets
-    @shelter = Shelter.find(params[:id])
-  end
-
-  def reviews
-    binding.pry
     @shelter = Shelter.find(params[:id])
   end
 
