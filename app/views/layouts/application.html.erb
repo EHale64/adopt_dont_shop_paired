@@ -11,6 +11,11 @@
   <nav class='topnav'>
     <a href='/shelters'>Shelters Index</a>
     <a href='/pets'>Pets Index</a>
+    <a href='/favorites'>Favorites: <% if session[:favorites].nil? %>
+                                         <%= "0" %>
+                                    <% else %>
+                                         <%= session[:favorites].count %>
+                                    <% end %></a>
   </nav>
 
   <body>

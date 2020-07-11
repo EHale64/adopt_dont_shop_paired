@@ -5,20 +5,20 @@
 <br>
 <hr>
 <% @shelter.pets.each do |pet| %>
-<br>
-<%= image_tag pet.image, height: '200', width: 'auto', alt: 'Image' %>
-<h3><%= link_to pet.name, "/pets/#{pet.id}" %></h3>
-<p>
-  Approximate Age: <%= "#{pet.age}" %>
   <br>
-  Sex: <%= pet.sex %>
+  <%= image_tag pet.image, height: '200', width: 'auto', alt: 'Image' %>
+  <h3><%= link_to pet.name, "/pets/#{pet.id}" %></h3>
+  <p>
+    Approximate Age: <%= "#{pet.age}" %>
+    <br>
+    Sex: <%= pet.sex %>
+    <br>
+    Adoption Status: <%= pet.status %>
+  </p>
+  <%= button_to "Edit #{pet.name} Info", "/pets/#{pet.id}/edit", method: :get %>
   <br>
-  Adoption Status: <%= pet.status %>
-</p>
-<%= button_to "Edit #{pet.name} Info", "/pets/#{pet.id}/edit", method: :get %>
-<br>
-<%= button_to "Delete #{pet.name}", "/pets/#{pet.id}", method: :delete %>
-<br>
-<hr>
+  <%= button_to "Delete #{pet.name}", "/pets/#{pet.id}", method: :delete %>
+  <br>
+  <hr>
 <% end %>
-<p>Total Pets: <%= "#{@shelter.total}" %></p>
+<p>Total Pets: <%= "#{@shelter.total_pets}" %></p>

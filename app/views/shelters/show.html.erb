@@ -6,15 +6,27 @@
   <%= @shelter.city %>, <%= @shelter.state%> <%= @shelter.zip %>
 </p>
 <%= button_to 'See Available Pets', "/shelters/#{@shelter.id}/pets", method: :get %>
+<br>
+<hr>
 
-<h3>Reviews:</h3>
-<p><% @shelter.reviews.each do |review| %>
-    <%= review.title %>
-    <%= "#{review.rating}/5" %>
+<h2>Reviews:</h2>
+<% @shelter.reviews.each do |review| %>
+  <h4><%= review.title %></h4>
+  <p>
+    <%= "Rating: #{review.rating}/5" %>
+    <br>
+    <br>
     <%= review.content %>
+    <br>
     <%= review.picture %>
-    <%= button_to 'Edit review', "/reviews/#{review.id}/edit", method: :get %>
-    <%= button_to 'Delete review', "/reviews/#{review.id}", method: :delete, :class => "btn" %>
-<% end %></p>
-
-<%= button_to 'Add review', "/shelters/#{@shelter.id}/reviews/new", method: :get %>
+  </p>
+  <br>
+  <%= button_to 'Edit Review', "/reviews/#{review.id}/edit", method: :get %>
+  <br>
+  <%= button_to 'Delete Review', "/reviews/#{review.id}", method: :delete, :class => "delete-review" %>
+  <br>
+  <hr>
+<% end %>
+<br>
+<%= button_to 'Add Review', "/shelters/#{@shelter.id}/reviews/new", method: :get %>
+<br>

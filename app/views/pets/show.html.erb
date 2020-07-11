@@ -1,4 +1,19 @@
-<%= image_tag @pet.image, height: '400', width: 'auto', alt: 'Image' %>
+<section>
+  <br>
+  <% flash.each do |type, message| %>
+    <%= message %>
+  <% end %>
+  <br>
+</section>
+<br>
+<%= image_tag @pet.image, height: '300', width: 'auto', alt: 'Image' %>
+<br>
+<br>
+<% if session[:favorites].nil? || !session[:favorites].include?(@pet.id) %>
+  <%= button_to "Add to Favorites", "/favorites/#{@pet.id}", method: :patch %>
+<% else %>
+  <%= button_to "Remove from Favorites", "/favorites/#{@pet.id}", method: :delete %>
+<% end %>
 <h2>Name: <%= @pet.name %></h2>
 <p>
   Description: <%= @pet.description %>

@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Shelters index page' do
-  xit 'allows the user to follow the link to update the shelter info' do
-    shelter_1 = Shelter.create(name: 'Pets, Pets, Pets', address: '123 Easy St', city: 'Denver', state: 'CO', zip: '80204')
+  it 'allows the user to follow the link to update the shelter info' do
+    shelter_1 = Shelter.create!(name: 'Pets, Pets, Pets', address: '123 Easy St', city: 'Denver', state: 'CO', zip: '80204')
 
     visit '/shelters'
 
     expect(page).to_not have_content('All Your Pets Are Belong to Us')
 
-    click_button "Edit #{shelter_1.name} Info"
+    click_on "Edit #{shelter_1.name} Info"
 
     expect(current_path).to eq("/shelters/#{shelter_1.id}/edit")
 
