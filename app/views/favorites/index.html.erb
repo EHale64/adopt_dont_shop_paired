@@ -1,0 +1,29 @@
+<section>
+  <br>
+  <% flash.each do |type, message| %>
+    <%= message %>
+  <% end %>
+  <br>
+</section>
+<h1>Favorite Pets</h1>
+<hr>
+<% if @favorites == 0 %>
+  <br>
+  <%= "You haven't favorited any pets!" %>
+<% else %>
+  <% @favorites.each do |favorite| %>
+    <section class='favorite' id='favorite-<%= favorite.id %>'>
+      <br>
+      <%= image_tag favorite.image, height: '200', width: 'auto', alt: 'Image' %>
+      <h3><%= link_to favorite.name, "/pets/#{favorite.id}" %></h3>
+      <br>
+      <%= button_to "Remove from Favorites", "/favorites/#{favorite.id}", method: :delete %>
+      <br>
+    </section>
+    <hr>
+  <% end %>
+<% end %>
+<br>
+<% if @favorites != 0 %>
+  <%= button_to "Delete All Favorites", "/favorites", method: :delete %>
+<% end %>
