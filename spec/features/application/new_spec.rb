@@ -24,7 +24,6 @@ RSpec.describe "As a visitor" do
         expect(page).to have_content(pet_2.name)
 
         check "#{pet_1.name}"
-
         fill_in :name, with: "Jackie Chan"
         fill_in :address, with: "123 South Dr."
         fill_in :city, with: "Denver"
@@ -36,7 +35,7 @@ RSpec.describe "As a visitor" do
         click_button "Submit applicaition"
 
         expect(current_path).to eq("/favorites")
-        #save_and_open_page
+        
         expect(page).to have_content("Application submitted!")
         expect(page).to_not have_css("img[@src='https://i.pinimg.com/originals/b3/84/a8/b384a8a6f79ebc1d592e285aec698382.jpg']")
     end

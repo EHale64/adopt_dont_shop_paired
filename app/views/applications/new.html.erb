@@ -1,11 +1,7 @@
 <h1>Apply to Adopt</h1>
 
 <%= form_tag "/applications", method: :post do %>
-<% @favorites.each do |favorite| %>
-    <label class="checkbox-inline">
-      <input type="checkbox" value=""> <%= favorite.name %>
-    </label>
-<% end %>
+<%= collection_check_boxes(:applications, :pet_ids, @favorites, :id, :name) %>
 
   <%= label_tag :name %>
   <%= text_field_tag :name %>
