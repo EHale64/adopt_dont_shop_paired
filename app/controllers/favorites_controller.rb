@@ -1,23 +1,22 @@
 class FavoritesController < ApplicationController
   def index
-    if session[:favorites].nil?
-      @favorites = 0
-    else
-      @favorites = session[:favorites].map {|favorite| Pet.find(favorite)}
-    end
+    @favorites = Favorites.new(session[:favorites])
+    @pet_apps = PetApplication.all
   end
 
   def update
     pet = Pet.find(params[:pet_id])
-    session[:favorites] ||= []
-    session[:favorites] << pet.id
+    favorites = Favorites.new(session[:favorites])
+    favorites.add_pet(pet)
+    session[:favorites] = favorites.pet_ids
     flash[:notice] = "#{pet.name} added to favorites!"
     redirect_to "/pets/#{pet.id}"
   end
 
   def destroy
     pet = Pet.find(params[:pet_id])
-    session[:favorites].delete(pet.id)
+    favorites = Favorites.new(session[:favorites])
+    favorites.remove_pet(pet)
     flash[:notice] = "#{pet.name} removed from favorites."
     redirect_to request.referrer
   end
