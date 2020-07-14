@@ -3,4 +3,12 @@ class Pet < ApplicationRecord
   belongs_to :shelter
   has_many :pet_applications
   has_many :applications, through: :pet_applications
+
+  def change_status
+    if self.status == "Adoptable"
+      self.status = "Pending"
+    else
+      self.status = "Adoptable"
+    end
+  end
 end

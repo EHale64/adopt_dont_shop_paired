@@ -14,7 +14,7 @@
     <a href='/favorites'>Favorites: <% if session[:favorites].nil? %>
                                          <%= "0" %>
                                     <% else %>
-                                         <%= session[:favorites].count %>
+                                         <%= "#{session[:favorites].count}" %>
                                     <% end %></a>
   </nav>
 

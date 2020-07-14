@@ -25,6 +25,13 @@
   <br>
   Adoption Status: <%= @pet.status %>
 </p>
+<p>
+<% if @pet.status == "Pending" %>
+  <% @pet.applications.each do |application| %>
+    <%= "On hold for #{application.name}" %>
+  <% end %>
+<% end %>
+</p>
 <br>
 <%= button_to "Edit #{@pet.name} Info", "/pets/#{@pet.id}/edit", method: :get %>
 <br>

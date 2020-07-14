@@ -9,7 +9,6 @@ class FavoritesController < ApplicationController
     favorites = Favorites.new(session[:favorites])
     favorites.add_pet(pet)
     session[:favorites] = favorites.pet_ids
-    #require "pry"; binding.pry
     flash[:notice] = "#{pet.name} added to favorites!"
     redirect_to "/pets/#{pet.id}"
   end

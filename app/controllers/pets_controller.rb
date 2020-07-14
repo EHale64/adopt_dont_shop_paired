@@ -22,11 +22,17 @@ class PetsController < ApplicationController
 
   def update
     pet = Pet.find(params[:id])
-    require "pry"; binding.pry
-    if request.referrer
+    if request.referrer.last(4) == "edit"
       pet.update(pet_params)
+    else
+      pet.change_status
+      pet.save
     end
-    redirect_to "/pets/#{pet.id}"
+    if pet.status == "Adoptable" && request.referrer.last(4) != "edit"
+      redirect_to request.referrer
+    else
+      redirect_to "/pets/#{pet.id}"
+    end
   end
 
   def destroy

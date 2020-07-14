@@ -6,6 +6,11 @@
 <%= @application.phone_number %>
 <%= @application.description %>
 <% @application.pets.each do |pet| %>
-  <%= button_to "Approve Application", "/pets/#{pet.id}", method: :patch %>
-  <%= link_to pet.name, "/pets/#{pet.id}" %>
+  <% if pet.status == "Pending" %>
+    <%= button_to "Revoke Application", "/pets/#{pet.id}", method: :patch %>
+    <%= link_to pet.name, "/pets/#{pet.id}" %>
+  <% else%>
+    <%= button_to "Approve Application", "/pets/#{pet.id}", method: :patch %>
+    <%= link_to pet.name, "/pets/#{pet.id}" %>
+  <% end %>
 <% end %>
