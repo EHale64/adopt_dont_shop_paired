@@ -1,0 +1,8 @@
+<h1>Pet Applicants</h1>
+<% if @applications.empty? %>
+  <p>This pet has no applicants to adopt. Help them find a forever home!</p>
+<% else %>
+  <% @applications.each do |application| %>
+    <%= link_to application.name, "/applications/#{application.id}" %>
+  <% end %>
+<% end %>

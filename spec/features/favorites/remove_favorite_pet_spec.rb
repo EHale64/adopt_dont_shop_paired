@@ -9,7 +9,7 @@ RSpec.describe 'Pet show page' do
     click_on "Add to Favorites"
 
     expect(current_path).to eq("/pets/#{pet_1.id}")
-
+    
     expect(page).to have_button("Remove from Favorites")
     expect(page).to_not have_button("Add to Favorites")
   end

@@ -1,5 +1,11 @@
 <h1>Apply to Adopt</h1>
-
+<section>
+  <br>
+  <% flash.each do |type, message| %>
+    <%= message %>
+  <% end %>
+  <br>
+</section>
 <%= form_tag "/applications", method: :post do %>
 <%= collection_check_boxes(:applications, :pet_ids, @favorites, :id, :name) %>
 
@@ -17,5 +23,5 @@
   <%= text_field_tag :phone_number %>
   <%= label_tag :description %>
   <%= text_field_tag :description %>
-  <%= submit_tag 'Submit applicaition' %>
+  <%= submit_tag 'Submit application' %>
 <% end %>

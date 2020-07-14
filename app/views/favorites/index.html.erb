@@ -8,12 +8,12 @@
 <h1>Favorite Pets</h1>
 <hr>
 <%= button_to "Apply to adopt pets!", "/applications/new", method: :get %>
-<% if @favorites == 0 || @favorites.empty? %>
-  <br>
-  <%= "You haven't favorited any pets!" %>
-  <br>
+<% if @favorites.pets.empty? %>
+    <br>
+    <%= "You haven't favorited any pets!" %>
+    <br>
 <% else %>
-  <% @favorites.each do |favorite| %>
+  <% @favorites.pets.each do |favorite| %>
     <section class='favorite' id='favorite-<%= favorite.id %>'>
       <br>
       <%= image_tag favorite.image, height: '200', width: 'auto', alt: 'Image' %>
@@ -26,6 +26,16 @@
   <% end %>
 <% end %>
 <br>
-<% if @favorites != 0 %>
+<% if @favorites.pets.count > 0 %>
   <%= button_to "Delete All Favorites", "/favorites", method: :delete %>
 <% end %>
+<br>
+<section class="application">
+  <ul>
+  <% if !@pet_apps.nil? %>
+    <% @pet_apps.each do |pet_app| %>
+      <li><%= link_to Pet.find(pet_app.pet_id).name, "/pets/#{pet_app.pet_id}" %></li>
+    <% end %>
+  <% end %>
+  </ul>
+</section>

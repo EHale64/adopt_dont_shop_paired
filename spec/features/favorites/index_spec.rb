@@ -10,7 +10,7 @@ RSpec.describe 'Favorites index page' do
     click_on "Add to Favorites"
 
     visit "/favorites"
-
+    
     expect(page).to have_css('.favorite', count: 1)
 
     within "#favorite-#{pet_1.id}" do

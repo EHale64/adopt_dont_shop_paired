@@ -22,7 +22,10 @@ class PetsController < ApplicationController
 
   def update
     pet = Pet.find(params[:id])
-    pet.update(pet_params)
+    require "pry"; binding.pry
+    if request.referrer
+      pet.update(pet_params)
+    end
     redirect_to "/pets/#{pet.id}"
   end
 
