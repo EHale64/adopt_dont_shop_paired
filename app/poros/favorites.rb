@@ -12,12 +12,10 @@ class Favorites
   end
 
   def add_pet(pet)
-    #@pets << pet
     @pet_ids << pet.id
   end
 
   def remove_pet(pet)
-    #@pets.delete(pet)
     @pet_ids.delete(pet.id)
   end
 end
