@@ -1,10 +1,4 @@
-<section>
-  <br>
-  <% flash.each do |type, message| %>
-    <%= message %>
-  <% end %>
-  <br>
-</section>
+<%= render partial: '/partials/flash_message' %>
 <br>
 <%= image_tag @pet.image, height: '300', width: 'auto', alt: 'Image' %>
 <br>

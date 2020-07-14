@@ -15,7 +15,4 @@
   <br>
   <%= submit_tag 'Update Review' %>
 <% end %>
-
-<% flash.each do |_, message|  %>
-  <%= message %>
-<% end %>
+<%= render partial: '/partials/flash_message' %>

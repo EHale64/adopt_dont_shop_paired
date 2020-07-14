@@ -1,10 +1,4 @@
-<section>
-  <br>
-  <% flash.each do |type, message| %>
-    <%= message %>
-  <% end %>
-  <br>
-</section>
+<%= render partial: '/partials/flash_message' %>
 <h1>Favorite Pets</h1>
 <hr>
 <%= button_to "Apply to adopt pets!", "/applications/new", method: :get %>

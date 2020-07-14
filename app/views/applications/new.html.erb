@@ -1,11 +1,5 @@
 <h1>Apply to Adopt</h1>
-<section>
-  <br>
-  <% flash.each do |type, message| %>
-    <%= message %>
-  <% end %>
-  <br>
-</section>
+<%= render partial: '/partials/flash_message' %>
 <%= form_tag "/applications", method: :post do %>
 <%= collection_check_boxes(:applications, :pet_ids, @favorites, :id, :name) %>
 
