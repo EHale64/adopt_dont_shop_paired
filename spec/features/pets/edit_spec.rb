@@ -14,6 +14,7 @@ RSpec.describe 'Pet show page' do
     fill_in :name, with: 'Bark Twain'
     fill_in :age, with: 5
     fill_in :description, with: 'Dalmation Puppy'
+    fill_in :image, with: 'dalmatian.jpg'
     select 'Male', :from => 'sex'
 
     click_on 'Update Pet Info'

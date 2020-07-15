@@ -15,4 +15,16 @@ RSpec.describe 'Shelter index page' do
     expect(page).to_not have_content('Got A Lotta Pets')
     expect(page).to have_content('Pets, Pets, Pets')
   end
+
+  it 'will not allow the user to delete the shelter if there are pending adoptions' do
+    shelter_1 = Shelter.create!(name: 'Pets, Pets, Pets', address: '123 Easy St', city: 'Denver', state: 'CO', zip: '80204')
+    pet_1 = shelter_1.pets.create!(name: 'Sarah Jessica Barker', age: 4, sex: 'Female', image: 'dalmatian.jpg', description: 'Dalmation', status: 'Pending')
+
+    visit '/shelters'
+
+    click_button "Delete #{shelter_1.name}"
+
+    expect(page).to have_content('Shelter cannot be deleted because it has pet(s) with pending adoptions!')
+    expect(page).to have_link("#{shelter_1.name}")
+  end
 end
