@@ -8,9 +8,20 @@
 <%= button_to 'See Available Pets', "/shelters/#{@shelter.id}/pets", method: :get %>
 <br>
 <hr>
-
+<p>Total Pets: <%= "#{@shelter.total_pets}" %></p>
+<p>Average Review Rating: <%= "#{@shelter.average_review_rating}" %></p>
+<p>Pet Applications on File: <%= "#{@shelter.pet_applications_on_file}" %></p>
+<hr>
+<br>
+<%= button_to 'Add Review', "/shelters/#{@shelter.id}/reviews/new", method: :get %>
 <h2>Reviews:</h2>
-<% @shelter.reviews.each do |review| %>
+<br>
+<%= form_tag "/shelters/#{@shelter.id}", method: :get do %>
+<%= select_tag :sort, options_for_select([['Highest to Lowest'], ['Lowest to Highest']], id: 'sort') %>
+<%= submit_tag 'Sort' %>
+<% end %>
+<br>
+<% @reviews.each do |review| %>
   <h4><%= review.title %></h4>
   <p>
     <%= "Rating: #{review.rating}/5" %>
@@ -18,7 +29,8 @@
     <br>
     <%= review.content %>
     <br>
-    <%= review.picture %>
+    <br>
+    <%= image_tag review.picture, height: '150', width: 'auto', alt: 'Image' %>
   </p>
   <br>
   <%= button_to 'Edit Review', "/reviews/#{review.id}/edit", method: :get %>
@@ -27,6 +39,3 @@
   <br>
   <hr>
 <% end %>
-<br>
-<%= button_to 'Add Review', "/shelters/#{@shelter.id}/reviews/new", method: :get %>
-<br>

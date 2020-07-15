@@ -8,6 +8,7 @@
 <% else %>
   <%= button_to "Remove from Favorites", "/favorites/#{@pet.id}", method: :delete %>
 <% end %>
+<br>
 <%= link_to "View Applications", "/pets/#{@pet.id}/applications" %>
 <h2>Name: <%= @pet.name %></h2>
 <p>
@@ -22,7 +23,7 @@
 <p>
 <% if @pet.status == "Pending" %>
   <% @pet.applications.each do |application| %>
-    <%= "On hold for #{application.name}" %>
+    On hold for <%= link_to "#{application.name}", "/applications/#{application.id}" %>
   <% end %>
 <% end %>
 </p>
