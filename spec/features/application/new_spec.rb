@@ -22,7 +22,7 @@ RSpec.describe "As a visitor" do
 
         expect(page).to have_content(pet_1.name)
         expect(page).to have_content(pet_2.name)
-        
+
         check "#{pet_1.name}"
 
         fill_in :name, with: "Jackie Chan"
@@ -33,7 +33,7 @@ RSpec.describe "As a visitor" do
         fill_in :phone_number, with: "123-456-7890"
         fill_in :description, with: "No one will take better care of these pets!"
 
-        click_button "Submit application"
+        click_button "Submit Application"
 
         expect(current_path).to eq("/favorites")
 
@@ -71,7 +71,7 @@ RSpec.describe "As a visitor" do
         fill_in :zip, with: "12345"
         fill_in :phone_number, with: "123-456-7890"
 
-        click_button "Submit application"
+        click_button "Submit Application"
 
         expect(current_path).to eq("/applications/new")
         expect(page).to have_content("You must fill out each section of the form to submit an application!")
@@ -108,7 +108,7 @@ RSpec.describe "As a visitor" do
         fill_in :phone_number, with: "123-456-7890"
         fill_in :description, with: "No one will take better care of these pets!"
 
-        click_button "Submit application"
+        click_button "Submit Application"
 
         expect(current_path).to eq("/favorites")
         expect(page).to have_css('.application', count: 1)

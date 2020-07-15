@@ -1,12 +1,7 @@
-<section>
-  <br>
-  <% flash.each do |type, message| %>
-    <%= message %>
-  <% end %>
-  <br>
-</section>
+<%= render partial: '/partials/flash_message' %>
 <h1>Favorite Pets</h1>
 <hr>
+<br>
 <%= button_to "Apply to adopt pets!", "/applications/new", method: :get %>
 <% if @favorites.pets.empty? %>
     <br>
@@ -31,11 +26,20 @@
 <% end %>
 <br>
 <section class="application">
-  <ul>
+  <p>Pets with Outstanding Applications:</p>
   <% if !@pet_apps.nil? %>
     <% @pet_apps.each do |pet_app| %>
-      <li><%= link_to Pet.find(pet_app.pet_id).name, "/pets/#{pet_app.pet_id}" %></li>
+      <%= link_to Pet.find(pet_app.pet_id).name, "/pets/#{pet_app.pet_id}" if Pet.find(pet_app.pet_id).status == 'Adoptable' %>
+      <br>
     <% end %>
   <% end %>
-  </ul>
+</section>
+<section class="approved">
+  <p>Pets with Approved Applications:</p>
+  <% if !@pet_apps.nil? %>
+    <% @pet_apps.each do |pet_app| %>
+      <%= link_to Pet.find(pet_app.pet_id).name, "/pets/#{pet_app.pet_id}" if Pet.find(pet_app.pet_id).status == 'Pending' %>
+      <br>
+    <% end %>
+  <% end %>
 </section>

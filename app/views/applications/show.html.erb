@@ -1,16 +1,27 @@
-<%= @application.name %>
-<%= @application.address %>
-<%= @application.city %>
-<%= @application.state %>
-<%= @application.zip %>
+<h2><%= @application.name %></h2>
+<p>
+  Address:
+  <%= @application.address %>
+  <br>
+  <%= @application.city %>, <%= @application.state %> <%= @application.zip %>
+</p>
 <%= @application.phone_number %>
+<br>
 <%= @application.description %>
+<br>
+<br>
 <% @application.pets.each do |pet| %>
   <% if pet.status == "Pending" %>
+    <br>
+    <%= link_to pet.name, "/pets/#{pet.id}" %>
+    <br>
+    <br>
     <%= button_to "Revoke Application", "/pets/#{pet.id}", method: :patch %>
-    <%= link_to pet.name, "/pets/#{pet.id}" %>
   <% else%>
-    <%= button_to "Approve Application", "/pets/#{pet.id}", method: :patch %>
+    <br>
     <%= link_to pet.name, "/pets/#{pet.id}" %>
+    <br>
+    <br>
+    <%= button_to "Approve Application", "/pets/#{pet.id}", method: :patch %>
   <% end %>
 <% end %>

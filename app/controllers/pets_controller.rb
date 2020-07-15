@@ -24,20 +24,35 @@ class PetsController < ApplicationController
     pet = Pet.find(params[:id])
     if request.referrer.last(4) == "edit"
       pet.update(pet_params)
-    else
+      if pet.save
+        redirect_to "/pets/#{pet.id}"
+      else
+        redirect_to request.referrer
+        flash[:error] = "You must fill out all fields to update this pet's info!"
+      end
+    elsif pet.status == "Adoptable" && request.referrer.last(4) != "edit"
       pet.change_status
       pet.save
-    end
-    if pet.status == "Adoptable" && request.referrer.last(4) != "edit"
-      redirect_to request.referrer
-    else
       redirect_to "/pets/#{pet.id}"
+    elsif pet.status == "Pending"
+      pet.change_status
+      pet.save
+      redirect_to request.referrer
     end
   end
 
   def destroy
-    Pet.destroy(params[:id])
-    redirect_to '/pets'
+    pet = Pet.find(params[:id])
+    if pet.status == 'Pending'
+      flash[:error] = "This pet cannot be deleted while its adoption status is pending!"
+      redirect_to request.referrer
+    else
+      favorites = Favorites.new(session[:favorites])
+      favorites.pet_ids.delete(pet.id)
+      pet.applications.destroy_all
+      pet.destroy
+      redirect_to '/pets'
+    end
   end
 
   private

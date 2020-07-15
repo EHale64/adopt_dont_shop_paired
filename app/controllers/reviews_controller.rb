@@ -5,6 +5,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
+    @review.picture = 'https://i.pinimg.com/originals/04/9c/71/049c7119abe6ab1b777005ea84777b78.jpg' if @review.picture == ''
     if @review.save
       redirect_to "/shelters/#{params[:shelter_id]}"
     else
@@ -20,7 +21,7 @@ class ReviewsController < ApplicationController
   def update
     review = Review.find(params[:id])
     review.update(review_params)
-    if review.save(review_params)
+    if review.save
       redirect_to "/shelters/#{review.shelter_id}"
     else
       flash[:error] = "You must fill out Title, Rating, and Content to submit a review."
